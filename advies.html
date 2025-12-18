@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brink Advies Groep | Financiële vragen, voor nu en in de toekomst</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #022b62;
+      --blue-dark: #0a0f1e;
+      --gold: #b4975a;
+      --gray: #f3f5f7;
+      --text: #0a0f1e;
+      --muted: #4b5563;
+      --container: 1180px;
+      --radius: 12px;
+      --shadow: 0 18px 50px rgba(2, 43, 98, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans', Arial, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+    .nav {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--blue);
+      text-transform: uppercase;
+    }
+    .brand img { height: 52px; }
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid #e8ecf0;
+      background: #fff;
+      cursor: pointer;
+      padding: 0;
+    }
+    .nav-toggle .burger,
+    .nav-toggle .burger::before,
+    .nav-toggle .burger::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--blue);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      border-radius: 2px;
+      position: relative;
+    }
+    .nav-toggle .burger::before { top: -6px; position: relative; }
+    .nav-toggle .burger::after { top: 6px; position: relative; }
+    .nav-toggle[aria-expanded="true"] .burger { transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .burger::before { transform: translateY(6px) rotate(90deg); }
+    .nav-toggle[aria-expanded="true"] .burger::after { transform: translateY(-6px) rotate(90deg); }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .nav-links .nav-link,
+    .nav-links .nav-parent,
+    .nav-links .nav-dropdown a {
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--text);
+    }
+    .nav-links .nav-link:hover,
+    .nav-links .nav-dropdown a:hover,
+    .nav-links .nav-parent:hover { background: var(--gray); color: var(--blue); }
+    .nav-item { position: relative; }
+    .nav-parent {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+    }
+    .nav-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      padding: 10px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e8ecf0;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 20;
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown { display: flex; }
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .nav .cta-pill.desktop-cta { margin-left: 4px; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .mobile-only { display: none; }
+    .cta-pill span { font-weight: 600; letter-spacing: 0.01em; }
+    .hero {
+      position: relative;
+      color: #fff;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(2, 43, 98, 0.78), rgba(10, 15, 30, 0.7));
+      z-index: 1;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.05);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 120px 24px 100px;
+      display: grid;
+      grid-template-columns: minmax(0, 640px);
+      gap: 24px;
+    }
+    .eyebrow {
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #e4e8ee;
+    }
+    h1, h2, h3, h4 { margin: 0; line-height: 1.2; color: inherit; }
+    h1 { font-family: 'Belleza', 'Noto Sans', sans-serif; font-size: clamp(2.6rem, 4vw, 3.6rem); }
+    h2 { font-size: clamp(2rem, 3vw, 2.6rem); }
+    h3 { font-size: 1.4rem; }
+    p.lead { font-size: 1.1rem; color: #e6ebf2; max-width: 52ch; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #0a0f1e;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(2, 43, 98, 0.2); }
+    main section { padding: 80px 24px; }
+    .section-inner { max-width: var(--container); margin: 0 auto; }
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    .two-col img {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .card {
+      padding: 22px;
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid #e8ecf0;
+      box-shadow: 0 10px 30px rgba(2, 43, 98, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card h3 { margin-bottom: 10px; color: var(--blue); }
+    .pill {
+      display: inline-flex;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(2, 43, 98, 0.08);
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+    .usps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .usps span {
+      padding: 8px 14px;
+      border: 1px solid #e8ecf0;
+      border-radius: 999px;
+      background: #fff;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .service-list {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .service-list li {
+      position: relative;
+      padding-left: 22px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .service-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .featured-track {
+      display: grid;
+      gap: 20px;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(280px, 360px);
+      overflow-x: auto;
+      padding: 10px 6px;
+      scroll-snap-type: x mandatory;
+    }
+    .featured-card {
+      scroll-snap-align: start;
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid #e8ecf0;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .featured-card img { width: 100%; height: 210px; object-fit: cover; }
+    .featured-card .meta {
+      padding: 16px 18px 18px;
+      display: grid;
+      gap: 8px;
+    }
+    .featured-card .price { color: var(--blue); font-weight: 700; }
+    .cta-block {
+      background: var(--gray);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      align-items: center;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.04);
+    }
+    .cta-block img { border-radius: var(--radius); }
+    .newsletter {
+      background: linear-gradient(120deg, rgba(2,43,98,0.08), rgba(180,151,90,0.12));
+      border-radius: var(--radius);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      align-items: center;
+    }
+    footer {
+      background: #0b1425;
+      color: #e1e5ec;
+    }
+    .footer-top {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 60px 24px 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 24px;
+      max-width: var(--container);
+      margin: 0 auto;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: #b8c0d0;
+    }
+    .footer-top h4 { color: #fff; margin-bottom: 10px; }
+    .footer-top a { color: #e1e5ec; }
+    .footer-top ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .social-links { display: flex; gap: 12px; margin-top: 8px; }
+    .social-links a {
+      width: 36px; height: 36px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; background: rgba(255,255,255,0.06);
+    }
+    .social-links a:hover { background: rgba(255,255,255,0.15); }
+    @media (max-width: 900px) {
+      body.nav-open { overflow: hidden; }
+      .nav { flex-wrap: nowrap; }
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 16px 20px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        border-top: 1px solid #e8ecf0;
+        box-shadow: 0 18px 36px rgba(2, 43, 98, 0.12);
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+        z-index: 15;
+      }
+      .nav-links.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .nav-item,
+      .nav-link { width: 100%; }
+      .nav-parent {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 12px;
+        border: 1px solid #e8ecf0;
+        border-radius: 10px;
+      }
+      .nav-dropdown {
+        position: static;
+        width: 100%;
+        margin-top: 6px;
+        background: var(--gray);
+        border-radius: 10px;
+        box-shadow: none;
+        display: none;
+      }
+      .nav-item.open .nav-dropdown { display: flex; }
+      .nav-links .nav-link { padding: 12px 12px; display: block; width: 100%; }
+      .mobile-only { display: inline-flex; }
+      .desktop-cta { display: inline-flex; width: 100%; justify-content: center; }
+      .hero { min-height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="advies.html">
+        <img src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep">
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Menu</span>
+        <span class="burger"></span>
+      </button>
+      <nav class="nav-links" id="primary-nav" aria-label="Hoofdmenu">
+        <a class="nav-link mobile-only" href="#hero">Home</a>
+        <a class="nav-link" href="#diensten">Hypotheken</a>
+        <a class="nav-link" href="#diensten">Verzekeringen</a>
+        <a class="nav-link" href="#diensten">Persoonlijke leningen</a>
+        <a class="nav-link" href="#diensten">Bedrijfsfinancieringen</a>
+        <a class="nav-link" href="#diensten">Verhuurhypotheken</a>
+        <a class="nav-link" href="#over">Over ons</a>
+        <a class="nav-link" href="#downloads">Downloads</a>
+        <a class="cta-pill desktop-cta" href="#contact"><span>Contact</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/verhuurhypotheken-brink.jpg" alt="Brink Advies Groep hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Brink Advies Groep</div>
+        <h1>Financiële vragen, voor nu en in de toekomst</h1>
+        <p class="lead">Bij Brink Advies kunt u terecht voor al uw financiële vragen. Onafhankelijk advies over hypotheken, verzekeringen, persoonlijke leningen en zakelijke financieringen, met één team dat de regie houdt.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+          <a class="btn" href="#contact">Plan een gesprek</a>
+          <a class="cta-pill" href="#downloads"><span>Bekijk documenten</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="over">
+      <div class="section-inner two-col">
+        <div>
+          <div class="pill">Over ons</div>
+          <h2>Onafhankelijk advies met oog op morgen</h2>
+          <p>Brink Advies staat voor professionaliteit en betrouwbaarheid met een persoonlijke benadering. Wij bouwen lange termijn relaties en nemen zorgen uit handen met een advies dat past bij uw situatie.</p>
+          <p class="muted">Of het nu gaat om een eerste hypotheek, een verhuurportefeuille of het afdekken van risico's: we combineren ervaring met snelheid en heldere taal zodat u precies weet waar u aan toe bent.</p>
+          <div class="usps">
+            <span>Onafhankelijk</span>
+            <span>Persoonlijk</span>
+            <span>Full service</span>
+            <span>Snelle doorlooptijd</span>
+            <span>Heldere tarieven</span>
+            <span>Toekomstgericht</span>
+          </div>
+        </div>
+        <div>
+          <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/03/home-over-ons.jpg" alt="Team Brink Advies Groep">
+        </div>
+      </div>
+    </section>
+
+    <section id="diensten" style="background: var(--gray);">
+      <div class="section-inner">
+        <div style="display:flex; justify-content: space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:22px;">
+          <div>
+            <div class="pill">Onze expertise</div>
+            <h2>Van eerste hypotheek tot investeringsfinanciering</h2>
+            <p class="muted" style="max-width:620px;">Eén aanspreekpunt voor hypotheken, verzekeringen en krediet. Wij vergelijken onafhankelijk, regelen papierwerk en onderhandelen met banken en verzekeraars.</p>
+          </div>
+          <a class="cta-pill" href="tel:+31432051111"><span>Bel direct</span></a>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Hypotheken</h3>
+            <p>Maatwerkfinanciering voor starters, doorstromers en ondernemers inclusief berekening van kansen en risico's.</p>
+          </article>
+          <article class="card">
+            <h3>Verzekeringen</h3>
+            <p>Volledige risicoanalyse en scherpe premies voor privé en zakelijke verzekeringen, met periodieke check-ups.</p>
+          </article>
+          <article class="card">
+            <h3>Persoonlijke leningen</h3>
+            <p>Heldere leenopties, transparante kosten en begeleiding bij het kiezen van de beste looptijd en rente.</p>
+          </article>
+          <article class="card">
+            <h3>Bedrijfsfinancieringen</h3>
+            <p>Financiering voor groei, werkkapitaal of herstructurering, afgestemd op uw businesscase.</p>
+          </article>
+          <article class="card">
+            <h3>Verhuurhypotheken</h3>
+            <p>Beleggings- en buy-to-let hypotheken inclusief portfolio-analyse en begeleiding richting bank of private lender.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-inner">
+        <div style="display:flex; justify-content: space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
+          <div>
+            <div class="pill">In de praktijk</div>
+            <h2>Recent advies- en financieringsdossiers</h2>
+          </div>
+          <a class="cta-pill" href="#contact"><span>Vraag een review</span></a>
+        </div>
+        <div class="featured-track" aria-label="Advies cases">
+          <article class="featured-card">
+            <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/verzekering-hyptoheken-brink.jpg" alt="Hypotheekoptimalisatie">
+            <div class="meta">
+              <div class="pill">Hypotheken</div>
+              <h3>Oriëntatiegesprek</h3>
+              <div class="price">Volledig onafhankelijk</div>
+              <p class="muted">Herfinanciering met lagere maandlasten en betere dekking voor gezin.</p>
+            </div>
+          </article>
+          <article class="featured-card">
+            <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/verhuurhypotheken-brink.jpg" alt="Verhuurhypotheken">
+            <div class="meta">
+              <div class="pill">Beleggen</div>
+              <h3>Verhuurportefeuille</h3>
+              <div class="price">Rendement met grip</div>
+              <p class="muted">Financiering voor buy-to-let panden inclusief verzekeringspakket.</p>
+            </div>
+          </article>
+          <article class="featured-card">
+            <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/persoonlijke-lening-klein-brink-advies.jpg" alt="Persoonlijke lening">
+            <div class="meta">
+              <div class="pill">Krediet</div>
+              <h3>Persoonlijke lening</h3>
+              <div class="price">Scherpe rentes</div>
+              <p class="muted">Transparante lening voor verbouwing met vaste looptijd en maandlast.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="downloads">
+      <div class="section-inner cta-block">
+        <div>
+          <div class="pill">Downloads</div>
+          <h2>Direct inzicht in werkwijze en voorwaarden</h2>
+          <p class="muted">Bekijk onze dienstverleningsdocumenten en voorwaarden zodat u exact weet wat u van ons mag verwachten.</p>
+          <ul style="padding-left:18px; margin:12px 0; color:var(--muted); display:grid; gap:6px;">
+            <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Dienstenwijzer-Brink-Adviesgroep.pdf">Dienstenwijzer Brink Adviesgroep (PDF)</a></li>
+            <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/DVD-Brink-Adviesgroep.pdf">Dienstverleningsdocument (PDF)</a></li>
+            <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Algemene-voorwaarden-Brink-Adviesgroep.pdf">Algemene voorwaarden (PDF)</a></li>
+          </ul>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
+            <a class="btn" href="mailto:info@brinkadviesgroep.nl">Mail documenten</a>
+            <a class="cta-pill" href="tel:+31432051111"><span>Plan een belafspraak</span></a>
+          </div>
+        </div>
+        <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep logo" style="max-width:260px; justify-self:center;">
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-inner newsletter">
+        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+          <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep" style="height:52px; width:auto;">
+          <div>
+            <h3 style="margin:0;">Plan een vrijblijvend adviesgesprek</h3>
+            <p class="muted" style="margin:4px 0 0;">We nemen binnen één werkdag contact op met een helder voorstel.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+          <a class="btn" href="tel:+31432051111">Bel 043 205 1111</a>
+          <a class="cta-pill" href="mailto:info@brinkadviesgroep.nl"><span>Mail ons</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep" style="height:46px; margin-bottom:12px;">
+        <p style="max-width:280px; color:#cdd4e0;">Volledig onafhankelijk advieskantoor voor hypotheken, verzekeringen en krediet, met één team dat meedenkt over uw toekomst.</p>
+        <p style="color:#cdd4e0; margin:10px 0 0;"><strong style="color:#fff;">Volg ons op</strong></p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/brinkvastgoed/" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 9H16l.5-3h-3V4.5C13.5 3.6 14 3 15.3 3H16.5V0h-2.4C11.6 0 10 1.6 10 4.2V6H7v3h3v9h3.5V9Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/brinkvastgoed/" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.71 4.71 0 0 0 12 7.3Zm0 7.7A3 3 0 1 1 15 12a3 3 0 0 1-3 3Zm4.9-8.5a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1Zm2 1.1c-.1-1.4-.4-2.6-1.5-3.7S15.9 2.9 14.5 2.8c-1.5-.1-6-.1-7.5 0-1.4.1-2.6.4-3.7 1.5S1.9 6.6 1.8 8c-.1 1.5-.1 6 0 7.5.1 1.4.4 2.6 1.5 3.7s2.3 1.4 3.7 1.5c1.5.1 6 .1 7.5 0 1.4-.1 2.6-.4 3.7-1.5s1.4-2.3 1.5-3.7c.1-1.5.1-6 0-7.5Zm-2 9.1a3.26 3.26 0 0 1-1.8 1.8c-1.3.5-4.5.4-5.9.4s-4.6.1-5.9-.4a3.26 3.26 0 0 1-1.8-1.8c-.5-1.3-.4-4.5-.4-5.9s-.1-4.6.4-5.9a3.26 3.26 0 0 1 1.8-1.8c1.3-.5 4.5-.4 5.9-.4s4.6-.1 5.9.4a3.26 3.26 0 0 1 1.8 1.8c.5 1.3.4 4.5.4 5.9s.1 4.6-.4 5.9Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@brinkadviesgroep.nl">info@brinkadviesgroep.nl</a></li>
+          <li><a href="tel:+31432051111">+31 (0)43 205 1111</a></li>
+          <li>KvK 14617278</li>
+          <li>BTW NL001909265B01</li>
+          <li>Kaalheidersteenweg 6<br>6467AA Kerkrade</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quicklinks</h4>
+        <ul>
+          <li><a href="#diensten">Hypotheken</a></li>
+          <li><a href="#diensten">Verzekeringen</a></li>
+          <li><a href="#diensten">Persoonlijke leningen</a></li>
+          <li><a href="#diensten">Bedrijfsfinancieringen</a></li>
+          <li><a href="#downloads">Downloads</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Documenten</h4>
+        <ul>
+          <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Dienstenwijzer-Brink-Adviesgroep.pdf">Dienstenwijzer</a></li>
+          <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/DVD-Brink-Adviesgroep.pdf">DVD</a></li>
+          <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Algemene-voorwaarden-Brink-Adviesgroep.pdf">Voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Brink Advies Groep</span>
+      <span>Onafhankelijk · Betrokken · Full service</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const navToggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.nav-links');
+      const submenuButtons = document.querySelectorAll('.nav-item.has-children .nav-parent');
+
+      const closeNav = () => {
+        if (!nav || !navToggle) return;
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+      };
+
+      navToggle?.addEventListener('click', () => {
+        if (!nav) return;
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        nav.classList.toggle('open', !expanded);
+        document.body.classList.toggle('nav-open', !expanded);
+      });
+
+      nav?.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target instanceof HTMLElement && target.tagName === 'A') {
+          closeNav();
+        }
+      });
+
+      submenuButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          if (window.matchMedia('(max-width: 900px)').matches) {
+            e.preventDefault();
+            const parent = btn.closest('.nav-item');
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            parent?.classList.toggle('open', !expanded);
+          }
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        if (!window.matchMedia('(max-width: 900px)').matches) {
+          closeNav();
+          submenuButtons.forEach((btn) => {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.closest('.nav-item')?.classList.remove('open');
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
