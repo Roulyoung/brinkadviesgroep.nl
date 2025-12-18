@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brink Vastgoed | Realiseren van dromen</title>
+  <title>Brink Advies Groep | Financiële vragen, voor nu en in de toekomst</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2-family=Belleza&family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --blue: #022b62;
@@ -111,9 +111,6 @@
       font: inherit;
       cursor: pointer;
     }
-    .nav-parent::after {
-      content: "";
-    }
     .nav-dropdown {
       position: absolute;
       top: 100%;
@@ -156,17 +153,6 @@
       border: 0;
     }
     .mobile-only { display: none; }
-    .cta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
     .cta-pill span { font-weight: 600; letter-spacing: 0.01em; }
     .hero {
       position: relative;
@@ -180,7 +166,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, rgba(2, 43, 98, 0.75), rgba(10, 15, 30, 0.7));
+      background: linear-gradient(120deg, rgba(2, 43, 98, 0.78), rgba(10, 15, 30, 0.7));
       z-index: 1;
     }
     .hero img {
@@ -281,6 +267,30 @@
       font-weight: 600;
       color: var(--muted);
     }
+    .service-list {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .service-list li {
+      position: relative;
+      padding-left: 22px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .service-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
     .featured-track {
       display: grid;
       gap: 20px;
@@ -327,22 +337,6 @@
       gap: 16px;
       align-items: center;
     }
-    .partners {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 150px;
-      gap: 18px;
-      overflow-x: auto;
-      align-items: center;
-      padding: 6px;
-    }
-    .partners img {
-      width: 120px;
-      height: 60px;
-      object-fit: cover;
-      filter: grayscale(1);
-      opacity: 0.75;
-    }
     footer {
       background: #0b1425;
       color: #e1e5ec;
@@ -378,68 +372,6 @@
       color: #fff; background: rgba(255,255,255,0.06);
     }
     .social-links a:hover { background: rgba(255,255,255,0.15); }
-    .choice-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(10, 15, 30, 0.6);
-      backdrop-filter: blur(2px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 999;
-    }
-    .choice-modal.open { display: flex; }
-    .choice-card {
-      background: #fff;
-      color: var(--text);
-      border-radius: 14px;
-      padding: 28px;
-      max-width: 480px;
-      width: min(90vw, 520px);
-      box-shadow: var(--shadow);
-      display: grid;
-      gap: 16px;
-      text-align: center;
-      position: relative;
-    }
-    .choice-card h3 { margin: 0; font-size: 1.3rem; }
-    .choice-card p { margin: 0; color: var(--muted); }
-    .choice-actions {
-      display: grid;
-      gap: 12px;
-      margin-top: 6px;
-    }
-    .choice-actions a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-    }
-    .choice-actions a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
-    .choice-actions .primary {
-      background: var(--blue);
-      color: #fff;
-    }
-    .choice-actions .secondary {
-      background: #fff;
-      color: var(--blue);
-      border-color: var(--blue);
-    }
-    .choice-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      color: var(--muted);
-    }
     @media (max-width: 900px) {
       body.nav-open { overflow: hidden; }
       .nav { flex-wrap: nowrap; }
@@ -494,22 +426,10 @@
   </style>
 </head>
 <body>
-  <div class="choice-modal" role="dialog" aria-modal="true" aria-label="Kies uw richting">
-    <div class="choice-card">
-      <button class="choice-close" aria-label="Sluiten">&times;</button>
-      <h3>Bent u op zoek naar een makelaar of naar een hypotheek, verzekering of advies?</h3>
-      <p>Kies uw route zodat we u direct naar de juiste informatie brengen.</p>
-      <div class="choice-actions">
-        <a class="primary" href="#aanbod">Ik zoek een makelaar (Brink Vastgoed)</a>
-        <a class="secondary" href="mailto:info@brinkvastgoed.nl?subject=Hypotheek%2Fverzekering%20of%20advies">Hypotheek / Verzekering / Advies (Brink Adviesgroep)</a>
-      </div>
-    </div>
-  </div>
-
   <header>
     <div class="nav">
       <a class="brand" href="index.html">
-        <img src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/Vastgoed-small.svg" alt="Brink Vastgoed">
+        <img src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep">
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
         <span class="sr-only">Menu</span>
@@ -517,42 +437,28 @@
       </button>
       <nav class="nav-links" id="primary-nav" aria-label="Hoofdmenu">
         <a class="nav-link mobile-only" href="index.html">Home</a>
-        <div class="nav-item has-children">
-          <button class="nav-parent" aria-expanded="false">Woningen</button>
-          <div class="nav-dropdown">
-            <a href="te-koop.html">Te koop</a>
-            <a href="te-huur.html">Te huur</a>
-            <a href="zoekopdracht.html">Zoekopdracht uitzetten</a>
-          </div>
-        </div>
-        <div class="nav-item has-children">
-          <button class="nav-parent" aria-expanded="false">Commercieel vastgoed</button>
-          <div class="nav-dropdown">
-            <a href="#diensten">Te koop</a>
-            <a href="#diensten">Te huur</a>
-            <a href="#cta">Zoekopdracht uitzetten</a>
-          </div>
-        </div>
-        <a class="nav-link" href="beleggingspanden.html">Beleggingspanden</a>
-        <a class="nav-link" href="vastgoed-exclusief.html">Vastgoed exclusief</a>
-        <a class="nav-link" href="aankoopbegeleiding.html">Aankoopbegeleiding</a>
+        <a class="nav-link" href="hypotheken.html">Hypotheken</a>
+        <a class="nav-link" href="verzekeringen.html">Verzekeringen</a>
+        <a class="nav-link" href="persoonlijke-leningen.html">Persoonlijke leningen</a>
+        <a class="nav-link" href="bedrijfsfinancieringen.html">Bedrijfsfinancieringen</a>
+        <a class="nav-link" href="verhuurhypotheken.html">Verhuurhypotheken</a>
         <a class="nav-link" href="#over">Over ons</a>
-        <a class="nav-link" href="#nieuwsbrief">Nieuws/Insights</a>
+        <a class="nav-link" href="#downloads">Downloads</a>
         <a class="cta-pill desktop-cta" href="#contact"><span>Contact</span></a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/home-dromen.jpg" alt="Brink Vastgoed hero">
+  <section class="hero" id="hero">
+    <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/verhuurhypotheken-brink.jpg" alt="Brink Advies Groep hero">
     <div class="hero-inner">
       <div>
-        <div class="eyebrow">Diensten</div>
-        <h1>Realiseren van dromen</h1>
-        <p class="lead">Full service advieskantoor voor makelaardij, verzekeringen en hypotheken. Exclusieve vastgoed- en investeringspanden, modulaire bouw en stille verkoop vormen onze portefeuille.</p>
+        <div class="eyebrow">Brink Advies Groep</div>
+        <h1>Financiële vragen, voor nu en in de toekomst</h1>
+        <p class="lead">Bij Brink Advies kunt u terecht voor al uw financiële vragen. Onafhankelijk advies over hypotheken, verzekeringen, persoonlijke leningen en zakelijke financieringen, met één team dat de regie houdt.</p>
         <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
-          <a class="btn" href="#diensten">Bekijk diensten</a>
-          <a class="cta-pill" href="#aanbod"><span>Ontdek aanbod</span></a>
+          <a class="btn" href="#contact">Plan een gesprek</a>
+          <a class="cta-pill" href="#downloads"><span>Bekijk documenten</span></a>
         </div>
       </div>
     </div>
@@ -563,20 +469,20 @@
       <div class="section-inner two-col">
         <div>
           <div class="pill">Over ons</div>
-          <h2>Brink Vastgoed</h2>
-          <p>Brink Vastgoed is een full service advieskantoor voor makelaardij, verzekeringen en hypotheken. Exclusieve vastgoed- en investeringspanden, modulaire bouw maar ook stille verkoop behoren tot onze portefeuille. Wij hebben een frisse kijk op het vak door de juiste combinatie van jong en oud.</p>
-          <p class="muted">Een persoonlijke benadering met oog voor de wensen van de klant en een lange termijn relatie opbouwen staat bij ons centraal. Wij begeleiden u graag bij de zoektocht naar uw nieuwe woning. Laten we samen van een huis uw thuis maken.</p>
+          <h2>Onafhankelijk advies met oog op morgen</h2>
+          <p>Brink Advies staat voor professionaliteit en betrouwbaarheid met een persoonlijke benadering. Wij bouwen lange termijn relaties en nemen zorgen uit handen met een advies dat past bij uw situatie.</p>
+          <p class="muted">Of het nu gaat om een eerste hypotheek, een verhuurportefeuille of het afdekken van risico's: we combineren ervaring met snelheid en heldere taal zodat u precies weet waar u aan toe bent.</p>
           <div class="usps">
-            <span>Betrouwbaar</span>
-            <span>Ervaring</span>
+            <span>Onafhankelijk</span>
             <span>Persoonlijk</span>
             <span>Full service</span>
-            <span>Betrokken</span>
-            <span>Pro actief</span>
+            <span>Snelle doorlooptijd</span>
+            <span>Heldere tarieven</span>
+            <span>Toekomstgericht</span>
           </div>
         </div>
         <div>
-          <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/home-over-ons.jpg" alt="Over Brink Vastgoed">
+          <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/03/home-over-ons.jpg" alt="Team Brink Advies Groep">
         </div>
       </div>
     </section>
@@ -585,109 +491,120 @@
       <div class="section-inner">
         <div style="display:flex; justify-content: space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:22px;">
           <div>
-            <div class="pill">Onze diensten</div>
-            <h2>Duurzame keuzes voor vastgoed</h2>
-            <p class="muted" style="max-width:620px;">Van exclusieve woningen tot investeringspanden en modulaire bouw: Brink Vastgoed biedt maatwerk en een discrete aanpak waar nodig.</p>
+            <div class="pill">Onze expertise</div>
+            <h2>Van eerste hypotheek tot investeringsfinanciering</h2>
+            <p class="muted" style="max-width:620px;">Eén aanspreekpunt voor hypotheken, verzekeringen en krediet. Wij vergelijken onafhankelijk, regelen papierwerk en onderhandelen met banken en verzekeraars.</p>
           </div>
-          <a class="cta-pill" href="#contact"><span>Plan een gesprek</span></a>
+          <a class="cta-pill" href="tel:+31432051111"><span>Bel direct</span></a>
         </div>
         <div class="grid">
           <article class="card">
-            <h3>Vastgoed exclusief</h3>
-            <p>Brinkvastgoed beschikt ook over een exclusief aanbod. Dit aanbod is alleen toegankelijk als u bij ons een account aanmaakt.</p>
+            <h3>Hypotheken</h3>
+            <p>Maatwerkfinanciering voor starters, doorstromers en ondernemers inclusief berekening van kansen en risico's.</p>
           </article>
           <article class="card">
-            <h3>Beleggingspanden</h3>
-            <p>Selectie van investeringspanden met solide rendement, afgestemd op uw portfolio en risicoprofiel.</p>
+            <h3>Verzekeringen</h3>
+            <p>Volledige risicoanalyse en scherpe premies voor privé en zakelijke verzekeringen, met periodieke check-ups.</p>
           </article>
           <article class="card">
-            <h3>Modulaire bouw</h3>
-            <p>Flexibele, duurzame woonoplossingen die snel realiseerbaar zijn en klaar voor de toekomst.</p>
+            <h3>Persoonlijke leningen</h3>
+            <p>Heldere leenopties, transparante kosten en begeleiding bij het kiezen van de beste looptijd en rente.</p>
           </article>
           <article class="card">
-            <h3>Aankoopbegeleiding</h3>
-            <p>Van eerste bezichtiging tot sleuteloverdracht: persoonlijke begeleiding en scherpe onderhandelingen.</p>
+            <h3>Bedrijfsfinancieringen</h3>
+            <p>Financiering voor groei, werkkapitaal of herstructurering, afgestemd op uw businesscase.</p>
+          </article>
+          <article class="card">
+            <h3>Verhuurhypotheken</h3>
+            <p>Beleggings- en buy-to-let hypotheken inclusief portfolio-analyse en begeleiding richting bank of private lender.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="aanbod">
+    <section>
       <div class="section-inner">
         <div style="display:flex; justify-content: space-between; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
           <div>
-            <div class="pill">Uitgelicht aanbod</div>
-            <h2>Woningen die eruit springen</h2>
+            <div class="pill">In de praktijk</div>
+            <h2>Recent advies- en financieringsdossiers</h2>
           </div>
-          <a class="cta-pill" href="#contact"><span>Plan een bezichtiging</span></a>
+          <a class="cta-pill" href="#contact"><span>Vraag een review</span></a>
         </div>
-        <div class="featured-track" aria-label="Uitgelichte woningen">
+        <div class="featured-track" aria-label="Advies cases">
           <article class="featured-card">
-            <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2025/07/FB-voorkant-1.jpg" alt="Hovenweide 24, Geleen">
+            <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/verzekering-hyptoheken-brink.jpg" alt="Hypotheekoptimalisatie">
             <div class="meta">
-              <div class="pill">Geleen</div>
-              <h3>Hovenweide 24</h3>
-              <div class="price"> 1.250.000 k.k.</div>
-              <p class="muted">Een woning die echt anders is</p>
+              <div class="pill">Hypotheken</div>
+              <h3>Oriëntatiegesprek</h3>
+              <div class="price">Volledig onafhankelijk</div>
+              <p class="muted">Herfinanciering met lagere maandlasten en betere dekking voor gezin.</p>
             </div>
           </article>
           <article class="featured-card">
-            <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2025/08/Voordijk483Barendrecht03.jpg" alt="Voordijk 483, Barendrecht">
+            <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/verhuurhypotheken-brink.jpg" alt="Verhuurhypotheken">
             <div class="meta">
-              <div class="pill">Barendrecht</div>
-              <h3>Voordijk 483</h3>
-              <div class="price">Verkocht (binnen 120 dagen op Funda)</div>
-              <p class="muted">Wonen in luxe - comfort - privacy - wellness.</p>
+              <div class="pill">Beleggen</div>
+              <h3>Verhuurportefeuille</h3>
+              <div class="price">Rendement met grip</div>
+              <p class="muted">Financiering voor buy-to-let panden inclusief verzekeringspakket.</p>
             </div>
           </article>
           <article class="featured-card">
-            <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/beleggingspanden-header.jpg" alt="Beleggingspanden">
+            <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/persoonlijke-lening-klein-brink-advies.jpg" alt="Persoonlijke lening">
             <div class="meta">
-              <div class="pill">Investeren</div>
-              <h3>Beleggingspanden selectie</h3>
-              <div class="price">Op aanvraag</div>
-              <p class="muted">Discreet aanbod van beleggingen met bewezen rendement.</p>
+              <div class="pill">Krediet</div>
+              <h3>Persoonlijke lening</h3>
+              <div class="price">Scherpe rentes</div>
+              <p class="muted">Transparante lening voor verbouwing met vaste looptijd en maandlast.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="cta">
+    <section id="downloads">
       <div class="section-inner cta-block">
         <div>
-          <div class="pill">Verkoop-CTA</div>
-          <h2>Exclusief aanbod, persoonlijke aanpak</h2>
-          <p class="muted">Brinkvastgoed beschikt ook over een exclusief aanbod. Dit aanbod is alleen toegankelijk als u bij ons een account aanmaakt. Neem contact op voor een discreet gesprek.</p>
+          <div class="pill">Downloads</div>
+          <h2>Direct inzicht in werkwijze en voorwaarden</h2>
+          <p class="muted">Bekijk onze dienstverleningsdocumenten en voorwaarden zodat u exact weet wat u van ons mag verwachten.</p>
+          <ul style="padding-left:18px; margin:12px 0; color:var(--muted); display:grid; gap:6px;">
+            <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Dienstenwijzer-Brink-Adviesgroep.pdf">Dienstenwijzer Brink Adviesgroep (PDF)</a></li>
+            <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/DVD-Brink-Adviesgroep.pdf">Dienstverleningsdocument (PDF)</a></li>
+            <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Algemene-voorwaarden-Brink-Adviesgroep.pdf">Algemene voorwaarden (PDF)</a></li>
+          </ul>
           <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
-            <a class="btn" href="#contact">Vraag meer info</a>
-            <a class="cta-pill" href="mailto:info@brinkvastgoed.nl"><span>Mail direct</span></a>
+            <a class="btn" href="mailto:info@brinkadviesgroep.nl">Mail documenten</a>
+            <a class="cta-pill" href="tel:+31432051111"><span>Plan een belafspraak</span></a>
           </div>
         </div>
-        <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/vastgoed-exclusief.jpeg" alt="Exclusief vastgoed">
+        <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep logo" style="max-width:260px; justify-self:center;">
       </div>
     </section>
 
-    <section id="nieuwsbrief">
+    <section id="contact">
       <div class="section-inner newsletter">
         <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
-          <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/Vastgoed-small.svg" alt="Brink Vastgoed logo" style="height:52px; width:auto;">
+          <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep" style="height:52px; width:auto;">
           <div>
-            <h3 style="margin:0;">Blijf op de hoogte</h3>
-            <p class="muted" style="margin:4px 0 0;">Nieuws over nieuw aanbod, stille verkoop en investeringskansen.</p>
+            <h3 style="margin:0;">Plan een vrijblijvend adviesgesprek</h3>
+            <p class="muted" style="margin:4px 0 0;">We nemen binnen één werkdag contact op met een helder voorstel.</p>
           </div>
         </div>
-        <a class="btn" href="mailto:info@brinkvastgoed.nl-subject=Aanmelden%20nieuwsbrief">Schrijf je in</a>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+          <a class="btn" href="tel:+31432051111">Bel 043 205 1111</a>
+          <a class="cta-pill" href="mailto:info@brinkadviesgroep.nl"><span>Mail ons</span></a>
+        </div>
       </div>
     </section>
-
   </main>
 
-  <footer id="contact">
+  <footer>
     <div class="footer-top">
       <div>
-        <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/03/Vastgoed-small.svg" alt="Brink Vastgoed" style="height:46px; margin-bottom:12px;">
-        <p style="max-width:280px; color:#cdd4e0;">Full service advieskantoor voor makelaardij, verzekeringen en hypotheken. Een persoonlijke, betrokken aanpak met oog voor de lange termijn.</p>
+        <img loading="lazy" src="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Logo-adviesgroep.png" alt="Brink Advies Groep" style="height:46px; margin-bottom:12px;">
+        <p style="max-width:280px; color:#cdd4e0;">Volledig onafhankelijk advieskantoor voor hypotheken, verzekeringen en krediet, met één team dat meedenkt over uw toekomst.</p>
         <p style="color:#cdd4e0; margin:10px 0 0;"><strong style="color:#fff;">Volg ons op</strong></p>
         <div class="social-links">
           <a href="https://www.facebook.com/brinkvastgoed/" aria-label="Facebook">
@@ -699,17 +616,10 @@
         </div>
       </div>
       <div>
-        <h4>Financieel advies nodig-</h4>
-        <div style="display:flex; align-items:center; gap:10px; padding:8px 0;">
-          <img loading="lazy" src="scraped_site_brinkvastgoed.nl/assets/wp-content/uploads/2022/05/logo-wit.svg" alt="Brink Advies Groep" style="height:42px;">
-          <span style="color:#cdd4e0;">Brink Advies Groep</span>
-        </div>
-      </div>
-      <div>
         <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:info@brinkvastgoed.nl">info@brinkvastgoed.nl</a></li>
-          <li><a href="tel:+31850640858">+31 850640858</a></li>
+          <li><a href="mailto:info@brinkadviesgroep.nl">info@brinkadviesgroep.nl</a></li>
+          <li><a href="tel:+31432051111">+31 (0)43 205 1111</a></li>
           <li>KvK 14617278</li>
           <li>BTW NL001909265B01</li>
           <li>Kaalheidersteenweg 6<br>6467AA Kerkrade</li>
@@ -718,24 +628,25 @@
       <div>
         <h4>Quicklinks</h4>
         <ul>
-          <li><a href="#diensten">Vastgoed exclusief</a></li>
-          <li><a href="#diensten">Commercieel vastgoed</a></li>
-          <li><a href="#diensten">Beleggingspanden</a></li>
-          <li><a href="#diensten">Aankoopbegeleiding</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="hypotheken.html">Hypotheken</a></li>
+          <li><a href="verzekeringen.html">Verzekeringen</a></li>
+          <li><a href="persoonlijke-leningen.html">Persoonlijke leningen</a></li>
+          <li><a href="bedrijfsfinancieringen.html">Bedrijfsfinancieringen</a></li>
+          <li><a href="#downloads">Downloads</a></li>
         </ul>
       </div>
       <div>
-        <h4>Vastgoed</h4>
+        <h4>Documenten</h4>
         <ul>
-          <li><a href="#aanbod">Te koop</a></li>
-          <li><a href="#aanbod">Te huur</a></li>
+          <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Dienstenwijzer-Brink-Adviesgroep.pdf">Dienstenwijzer</a></li>
+          <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/DVD-Brink-Adviesgroep.pdf">DVD</a></li>
+          <li><a href="../scraped_site_brinkadviesgroep.nl/assets/wp-content/uploads/2022/05/Algemene-voorwaarden-Brink-Adviesgroep.pdf">Voorwaarden</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© Brink Vastgoed</span>
-      <span>Betrouwbaar · Persoonlijk · Full service</span>
+      <span>© Brink Advies Groep</span>
+      <span>Onafhankelijk · Betrokken · Full service</span>
     </div>
   </footer>
 
@@ -788,39 +699,6 @@
           });
         }
       });
-    })();
-  </script>
-  <script>
-    (function() {
-      const modal = document.querySelector('.choice-modal');
-      const closeBtn = modal.querySelector('.choice-close');
-      const primary = modal.querySelector('.primary');
-      const secondary = modal.querySelector('.secondary');
-
-      const seenKey = 'brink_choice_seen';
-
-      function openModal() {
-        modal.classList.add('open');
-        sessionStorage.setItem(seenKey, '1');
-        primary.focus();
-      }
-      function closeModal() {
-        modal.classList.remove('open');
-      }
-
-      closeBtn.addEventListener('click', closeModal);
-      primary.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-      });
-
-      // open once per session
-      if (!sessionStorage.getItem(seenKey)) {
-        openModal();
-      }
     })();
   </script>
 </body>
